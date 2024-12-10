@@ -1,4 +1,4 @@
-samp = File.read('day-1-input.txt')
+samp = File.read('day-1-b-input.txt')
 pp samp
 left = []
 right = []
@@ -13,29 +13,6 @@ end
 p left.sort
 p right.sort
 
-# puts "split_samp"
-# p split_samp
-
-
-
-# split = split_samp.map do |x|
-#   if x == " " || x == "\n"
-#     next
-#   else
-#     x.to_i
-#   end
-# end.compact
-
-# puts "split"
-# p split
-
-split.each_with_index do |x, i|
-  if i % 2 == 0
-    right.append(x)
-  else
-    left.append(x)
-  end
-end
 
 puts ("left")
 left_sorted = left.sort
