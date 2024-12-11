@@ -1,39 +1,52 @@
 samp = File.read('day-2-input.txt')
 pp samp
 
-
-arr = []
+data = []
 samp.split("\n").compact.each do |x|
-  arr << x.split(" ").map {|a| a.to_i}
+  data << x.split(' ').map(&:to_i)
 end
 
-def ascending?(sub_arr)
-  sub_arr.sort == sub_arr
+def ascending?(arr)
+  arr.sort == arr
 end
 
-def descending?(sub_arr)
-  sub_arr.sort.reverse == sub_arr
+def descending?(arr)
+  arr.sort.reverse == arr
 end
 
-def good_gap?(a,b)
-  diff = (a-b).abs
-  return diff > 0 && diff <= 3
+def good_gap?(a, b)
+  diff = (a - b).abs
+  diff.positive? && diff <= 3
 end
 
-def good_gaps?(sub_arr)
-  sub_arr.each_with_index do |x, i|
-    unless i == sub_arr.length - 1
-      return false unless good_gap?(x, sub_arr[i + 1])
-    end
+def good_gaps?(arr)
+  arr.each_with_index do |x, i|
+    return false if i != arr.length - 1 && !good_gap?(x, arr[i + 1])
   end
-  return true
+  true
 end
 
-count = 0
-
-arr.each do |sub_arr|
-  next unless descending?(sub_arr) || ascending?(sub_arr)
-  next unless good_gaps?(sub_arr)
-  count += 1
+def good_arr?(arr)
+  (descending?(arr) || ascending?(arr)) && good_gaps?(arr)
 end
-p count
+
+def problem_dampener(row)
+  return true if good_arr?(row)
+
+  row.length.times do |i|
+    dup = row.dup
+    dup.delete_at(i)
+    return true if good_arr?(dup)
+  end
+  false
+end
+
+def amount_of_good_reports(data)
+  count = 0
+  data.each do |row|
+    count += 1 if problem_dampener(row)
+  end
+  count
+end
+
+p amount_of_good_reports(data)
