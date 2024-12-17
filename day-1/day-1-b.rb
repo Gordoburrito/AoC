@@ -1,4 +1,4 @@
-samp = File.read('day-1-input-copy.txt')
+samp = File.read('day-1-input.txt')
 pp samp
 left = []
 right = []
