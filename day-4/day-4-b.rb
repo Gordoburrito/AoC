@@ -2,10 +2,6 @@ samp = File.read('day-4-input.txt')
 
 @data = []
 
-def find_the_A do
-  @data.
-end
-
 # TODO: find the A's and then check the diagonal's
 
 # find X M up and left
@@ -15,35 +11,29 @@ end
 # ..A..
 # .M.S
 
-
 samp.split("\n").each do |x|
   @data << x.split('')
 end
 
-def find_xmas(x,y) do
+def find_xmas(x, y)
+  first_cross = [@data[y - 1][x - 1], @data[y + 1][x + 1]]
+  second_cross = [@data[y - 1][x + 1], @data[y + 1][x - 1]]
 
-  # next if  x-1 && y+1 != M || S
-  return xmas_count
-end
+  return 1 if first_cross.sort == %w[M S] && second_cross.sort == %w[M S]
 
-
-def edge_case(x, y, dx, dy, x_max, y_max)
-  new_y = y - dy
-  new_x = x + dx
-  return true if new_y.negative? || new_y > y_max
-  return true if new_x.negative? || new_x > x_max
-end
-
-def get_letter()
-
+  0
 end
 
 total_xmas_count = 0
+
 @data.each_with_index do |row, y|
+  next if y.zero? || y == @data.length - 1
+
   row.each_with_index do |el, x|
-    total_xmas_count += find_xmas(x,y) if el == 'A'
+    next if x.zero? || x == row.length - 1
+
+    total_xmas_count += find_xmas(x, y) if el == 'A'
   end
 end
 
-p "total_xmas_count"
-p total_xmas_count
+p "total_xmas_count: #{total_xmas_count}"
