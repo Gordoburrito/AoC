@@ -1,5 +1,6 @@
 example_id                  | status | run_time        |
 --------------------------- | ------ | --------------- |
-./spec/day-5_spec.rb[1:1:1] | passed | 0.00004 seconds |
-./spec/day-5_spec.rb[1:2:1] | passed | 0.00066 seconds |
-./spec/day-5_spec.rb[1:3:1] | passed | 0.00006 seconds |
+./spec/day-5_spec.rb[1:1:1] | passed | 0.00288 seconds |
+./spec/day-5_spec.rb[1:2:1] | passed | 0.00508 seconds |
+./spec/day-5_spec.rb[1:3:1] | passed | 0.00195 seconds |
+./spec/day-6_spec.rb[1:1:1] | passed | 0.00788 seconds |
